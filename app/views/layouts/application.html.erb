@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
+    <title><%= content_for?(:title) ? yield(:title) : "One PX" %></title>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -13,6 +13,21 @@
   </head>
 
   <body>
+
+    <% if  identity_signed_in?-%>
+      <div class="user">
+        <span> Bienvenido <%= current_identity.email %> </span>
+        <%= link_to 'Cerrar Sesión', log_out_path, method: :delete %>
+      </div>
+    <% else -%>
+        <%= link_to 'Inicia Sesión', log_in_path %>
+        <%= link_to 'Registrate', sign_up_path %>
+    <% end -%>
+    <% flash.each do |key, value|-%>
+      <div id="flash_<%= key %>">
+        <%= value %>
+      </div>
+    <% end -%>
 
     <%= yield %>
 

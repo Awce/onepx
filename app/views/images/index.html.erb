@@ -1,0 +1,12 @@
+<!-- t es un helper de traducción  -->
+<h1><%= t('.title')%></h1>
+
+<% if identity_signed_in? -%>
+  <p>
+    <%= link_to t('.new_link'), new_image_path, class: 'button' %>
+  </p>
+<% end -%>
+
+<div class="row" data-equalizer>
+  <%= render @images %>
+</div>

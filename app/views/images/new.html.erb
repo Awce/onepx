@@ -1,0 +1,34 @@
+<%- model_name = @image.class.model_name.human %>
+
+<h1><%= t('.title', model: model_name) %></h1>
+
+<%= form_for @image, builder: CustomFormBuilder do |form| %>
+  <%= form.form_error %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.field_error :name %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+    <%= form.label :category %>
+    <!-- Agramos un hash de traduccion para el colletion mediante un helper-->
+    <%= form.collection_select :category, image_categories, :last, :first %>
+  </div>
+  <div class='field'>
+    <%= form.label :tags_text %>
+    <%= form.text_field :tags_text %>
+  </div>
+  <div class='field'>
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+  <div clas='field'>
+    <%= form.submit class: 'button small' %>
+  </div>
+
+<% end %>

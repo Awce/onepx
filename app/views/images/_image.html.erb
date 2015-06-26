@@ -1,0 +1,6 @@
+<div class="large-3 columns text-center panel" data-equalizer-watch>
+  <figure class="ht">
+    <%= image_tag image.photo.thumb.url %>
+  </figure>
+  <span data-tooltip aria-haspopup="true" class="success label round has-tip" title="Creado por: <%= image.try(:identity).try(:email) %>"> <%= image.name %> </span>
+</div>
